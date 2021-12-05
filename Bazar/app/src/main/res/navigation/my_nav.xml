@@ -11,12 +11,19 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/navigateFromLoginFragmentToTimeLineFragment"
-            app:destination="@id/timeLineFragment" />
+            android:id="@+id/navigateFromLoginFragmentToForgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/navigateFromLoginFragmentToRegisterFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/timeLineFragment"
-        android:name="com.example.bazar.fragments.TimeLineFragment"
-        android:label="fragment_time_line"
-        tools:layout="@layout/fragment_time_line" />
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.bazar.fragments.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.bazar.fragments.RegisterFragment"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" />
 </navigation>

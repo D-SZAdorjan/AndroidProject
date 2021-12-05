@@ -1,6 +1,8 @@
 package com.example.bazar.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,9 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import com.example.bazar.MainScreen
 import com.example.bazar.R
 import com.example.bazar.databinding.FragmentLoginBinding
 import com.example.bazar.repository.Repository
@@ -28,6 +32,8 @@ class LoginFragment : Fragment() {
     lateinit var signInBtn : Button
     lateinit var loginUserName : EditText
     lateinit var loginPassword : EditText
+    lateinit var registerBtn : Button
+    lateinit var forgotPassBtn : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +52,8 @@ class LoginFragment : Fragment() {
         loginUserName = binding.userName
         loginPassword = binding.password
         signInBtn = binding.signInBtn
+        registerBtn = binding.loginFragRegisterBtn
+        forgotPassBtn = binding.loginFragFPBtn
 
         return view
     }
@@ -56,6 +64,22 @@ class LoginFragment : Fragment() {
         signInBtn.setOnClickListener {
             onSignInBtnClicked(view)
         }
+
+        forgotPassBtn.setOnClickListener{
+            onForgotPasswordTextClicked(view)
+        }
+
+        registerBtn.setOnClickListener {
+            onRegisterButtonClicked(view)
+        }
+    }
+
+    private fun onForgotPasswordTextClicked(view: View){
+        Navigation.findNavController(view).navigate(R.id.navigateFromLoginFragmentToForgotPasswordFragment)
+    }
+
+    private fun onRegisterButtonClicked(view: View){
+        Navigation.findNavController(view).navigate(R.id.navigateFromLoginFragmentToRegisterFragment)
     }
 
     private fun onSignInBtnClicked(view: View) {
@@ -74,8 +98,15 @@ class LoginFragment : Fragment() {
 
         loginViewModel.isSuccessfull.observe(this.viewLifecycleOwner) {
             Log.d("xxx", "Logged in successfully = " + it)
-            Navigation.findNavController(view).navigate(R.id.navigateFromLoginFragmentToTimeLineFragment)
+            openMainScreen(it.toString())
         }
+    }
+
+    fun openMainScreen(token : String){
+        val intent = Intent(activity, MainScreen::class.java).apply{
+            putExtra(EXTRA_MESSAGE, token)
+        }
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
