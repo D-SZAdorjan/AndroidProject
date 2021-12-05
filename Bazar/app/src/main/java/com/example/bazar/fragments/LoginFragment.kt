@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import com.example.bazar.App
 import com.example.bazar.MainScreen
 import com.example.bazar.R
 import com.example.bazar.databinding.FragmentLoginBinding
@@ -98,12 +99,13 @@ class LoginFragment : Fragment() {
 
         loginViewModel.isSuccessfull.observe(this.viewLifecycleOwner) {
             Log.d("xxx", "Logged in successfully = " + it)
-            openMainScreen(it.toString())
+            openMainScreen(App.token)
         }
     }
 
     fun openMainScreen(token : String){
         val intent = Intent(activity, MainScreen::class.java).apply{
+            Log.d("xxx", "Token in openMainScreen function: " + token)
             putExtra(EXTRA_MESSAGE, token)
         }
         startActivity(intent)
