@@ -3,13 +3,19 @@
     <item
         android:id="@+id/homeFragment"
         android:enabled="true"
-        android:title="Timeline"/>
+        android:title="Timeline"
+        android:icon="@drawable/ic_bfrombaazar"
+        android:iconTint="@color/b_white"/>
     <item
         android:id="@+id/quizStartFragment"
         android:enabled="true"
-        android:title="My market"/>
+        android:title="My market"
+        android:icon="@drawable/ic_my_market"
+        android:iconTint="@color/b_white"/>
     <item
         android:id="@+id/profileFragment"
         android:enabled="true"
-        android:title="My fares"/>
+        android:title="My fares"
+        android:icon="@drawable/ic_sales_orders"
+        android:iconTint="@color/b_white"/>
 </menu>

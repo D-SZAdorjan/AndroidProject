@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import com.example.bazar.App
 import com.example.bazar.MainScreen
 import com.example.bazar.R
 import com.example.bazar.databinding.FragmentLoginBinding
+import com.example.bazar.manager.SharedPreferencesManager
 import com.example.bazar.repository.Repository
 import com.example.bazar.viewmodels.LoginViewModel
 import com.example.bazar.viewmodels.LoginViewModelFactory
@@ -35,6 +37,7 @@ class LoginFragment : Fragment() {
     lateinit var loginPassword : EditText
     lateinit var registerBtn : Button
     lateinit var forgotPassBtn : TextView
+    lateinit var rememberRBtn : RadioButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +58,14 @@ class LoginFragment : Fragment() {
         signInBtn = binding.signInBtn
         registerBtn = binding.loginFragRegisterBtn
         forgotPassBtn = binding.loginFragFPBtn
+        rememberRBtn = binding.loginFragRememberMe
 
+        Log.d("xxx", App.sharedPreferences.getBooleanValue(SharedPreferencesManager.KEY_REMEMBER, false).toString())
+        if(App.sharedPreferences.getBooleanValue(SharedPreferencesManager.KEY_REMEMBER, false)!!){
+            rememberRBtn.visibility = View.GONE;
+            loginUserName.setText(App.sharedPreferences.getStringValue(SharedPreferencesManager.KEY_USER_NAME, ""))
+            loginPassword.setText(App.sharedPreferences.getStringValue(SharedPreferencesManager.KEY_PASSWORD, ""))
+        }
         return view
     }
 
@@ -90,6 +100,11 @@ class LoginFragment : Fragment() {
             }
             if (it != null) {
                 it.password = loginPassword.text.toString()
+            }
+            if( rememberRBtn.isChecked && it != null ){
+                App.sharedPreferences.putBooleanValue(SharedPreferencesManager.KEY_REMEMBER, true)
+                App.sharedPreferences.putStringValue(SharedPreferencesManager.KEY_USER_NAME, loginUserName.text.toString())
+                App.sharedPreferences.putStringValue(SharedPreferencesManager.KEY_PASSWORD, loginPassword.text.toString())
             }
         }
 

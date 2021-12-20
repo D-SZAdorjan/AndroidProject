@@ -21,6 +21,18 @@ data class LoginResponse (
     var refresh_time: Long
 )
 
+@JsonClass(generateAdapter = true)
+data class UserInfo(
+    var username: String,
+    var phone_number: String,
+    var email: String,
+    var firebase_token: String,
+    var is_activated: Boolean,
+    var creation_time: Long
+    )
+
+@JsonClass(generateAdapter = true)
+data class UserInfoResponse(val errorCode: Int, val userData : UserInfo, val time_stamp: Long)
 
 // GSon converter
 //data class LoginRequest (

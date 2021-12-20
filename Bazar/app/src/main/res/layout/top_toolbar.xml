@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/b_dark">
+
+    <!--<ImageView
+        android:id="@+id/mainScreen_backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_next_pagination"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        />-->
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainScreen_fragTitle"
+        android:textSize="22dp"
+        android:text="Base Title"
+        android:textColor="@color/white"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        />-->
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/mainScreen_leftIcons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="mainScreen_defaultAvatar, mainScreen_filterBtn, mainScreen_searchBtn" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/mainScreen_rightIcons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="mainScreen_bazaar_logo" />
+
+    <ImageView
+        android:id="@+id/mainScreen_bazaar_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_bazaar_logo_coloured"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="30dp" />
+
+    <!--<ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/mainScreen_closeBtn"
+        android:src="@drawable/ic_close"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="24dp"
+        />-->
+
+    <ImageView
+        android:id="@+id/mainScreen_defaultAvatar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_defaultavatar"
+        app:layout_constraintBottom_toBottomOf="@+id/mainScreen_filterBtn"
+        tools:layout_editor_absoluteX="365dp" />
+
+    <ImageView
+        android:id="@+id/mainScreen_filterBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_filter_colored"
+        app:layout_constraintBottom_toBottomOf="@+id/mainScreen_searchBtn"
+        app:tint="@color/white"
+        tools:layout_editor_absoluteX="319dp" />
+
+    <ImageView
+        android:id="@+id/mainScreen_searchBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/mainScreen_bazaar_logo"
+        tools:layout_editor_absoluteX="269dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -76,11 +76,20 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password"
             android:text="Log in"/>
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginFrag_rememberMe"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_in_btn"
+        app:layout_constraintBottom_toBottomOf="@id/loginFrag_fpText"
+        android:text="Remember me"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/loginFrag_fpText"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_btn"
+        app:layout_constraintTop_toBottomOf="@+id/loginFrag_rememberMe"
         android:text="ForgotPassword?"
         android:gravity="center"
         android:textSize="20dp"/>
