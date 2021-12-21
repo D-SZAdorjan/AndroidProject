@@ -103,14 +103,34 @@
         android:layout_marginRight="10dp"
         />-->
     <!--app:layout_constraintTop_toBottomOf="@+id/mainScreen_blackbckg"-->
+
+    <include
+        android:id="@+id/mainScreen_topToolBar"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mainScreenFragmentContainerView"
+        layout="@layout/top_toolbar"
+        android:visibility="gone"/>
+
+    <!--<ViewStub
+        android:id="@+id/mainScreen_topToolBar"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mainScreenFragmentContainerView"
+        android:inflatedId="@layout/top_toolbar"
+        android:layout="@layout/top_toolbar"
+        />-->
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/mainScreenFragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainScreen_topToolBar"
+        app:defaultNavHost="true"
         app:navGraph="@navigation/mainscreen_nav"
         tools:layout_editor_absoluteX="1dp" />
 
