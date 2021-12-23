@@ -3,11 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainscreen_nav"
-    app:startDestination="@id/timeLineFragment2">
+    app:startDestination="@id/timeLineFragment">
 
     <fragment
-        android:id="@+id/timeLineFragment2"
+        android:id="@+id/timeLineFragment"
         android:name="com.example.bazar.fragments.TimeLineFragment"
         android:label="fragment_time_line"
-        tools:layout="@layout/fragment_time_line" />
+        tools:layout="@layout/fragment_time_line" >
+        <action
+            android:id="@+id/action_timeLineFragment2_to_myMarketFragment2"
+            app:destination="@id/myMarketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myMarketFragment"
+        android:name="com.example.bazar.fragments.MyMarketFragment"
+        android:label="fragment_my_market"
+        tools:layout="@layout/fragment_my_market" />
 </navigation>

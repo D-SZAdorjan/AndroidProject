@@ -11,4 +11,7 @@
     <color name="b_white">#EEEEEE</color>
     <color name="c_white">#c5c5c5</color>
     <color name="b_turquise">#00B5C0</color>
+    <color name="login_black">#161616</color>
+    <color name="distancer_grey_17percent">#33EEEEEE</color>
+    <color name="nTB_grey_70percent">#B3EEEEEE</color>
 </resources>

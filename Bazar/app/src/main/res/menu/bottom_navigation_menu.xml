@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/timeLineFragment"
         android:enabled="true"
         android:title="Timeline"
         android:icon="@drawable/ic_bfrombaazar"
         android:iconTint="@color/b_white"/>
     <item
-        android:id="@+id/quizStartFragment"
+        android:id="@+id/myMarketFragment"
         android:enabled="true"
         android:title="My market"
         android:icon="@drawable/ic_my_market"
         android:iconTint="@color/b_white"/>
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/registerFragment"
         android:enabled="true"
         android:title="My fares"
         android:icon="@drawable/ic_sales_orders"

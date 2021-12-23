@@ -3,7 +3,7 @@ import com.squareup.moshi.JsonClass
 
 //import com.google.gson.annotations.SerializedName
 
-data class User(var username: String="", var password: String="", val email: String="", var phone_number: String="")
+data class User(var username: String="", var password: String="", var email: String="", var phone_number: String="")
 
 @JsonClass(generateAdapter = true)
 data class LoginRequest (
@@ -33,6 +33,18 @@ data class UserInfo(
 
 @JsonClass(generateAdapter = true)
 data class UserInfoResponse(val errorCode: Int, val userData : UserInfo, val time_stamp: Long)
+
+@JsonClass(generateAdapter = true)
+data class RegisterRequest(val username: String, val password: String, val email: String)
+
+@JsonClass(generateAdapter = true)
+data class RegisterResponse(val code: Int, val message : String, val timestamp: Long)
+
+@JsonClass(generateAdapter = true)
+data class ForgotPasswordRequest(val username: String, val email: String)
+
+@JsonClass(generateAdapter = true)
+data class ForgotPasswordResponse(val code: Int, val message : String, val timestamp: Long )
 
 // GSon converter
 //data class LoginRequest (

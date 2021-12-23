@@ -6,134 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainScreen">
 
-    <!--<androidx.constraintlayout.widget.Group
-        android:id="@+id/baseFrag_header"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:constraint_referenced_ids="mainScreen_blackbckg, mainScreen_backBtn,
-         mainScreen_fragTitle, mainScreen_bazaar_logo, mainScreen_closeBtn,
-         mainScreen_defaultAvatar, mainScreen_filterBtn,mainScreen_searchBtn"
-        />
-
-    <View
-        android:id="@+id/mainScreen_blackbckg"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <ImageView
-        android:id="@+id/mainScreen_backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_next_pagination"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        />
-
-    <ImageView
-        android:id="@+id/mainScreen_bazaar_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_bazaar_logo_coloured"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mainScreen_fragTitle"
-        app:layout_constraintLeft_toRightOf="@+id/mainScreen_backBtn"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="22dp"
-        android:text="Base Title"
-        android:textColor="@color/white"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/mainScreen_defaultAvatar"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_defaultavatar"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="20dp"
-        />
-
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:id="@+id/mainScreen_closeBtn"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_close"
-        android:layout_marginTop="35dp"
-        android:layout_marginRight="24dp"
-        />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/mainScreen_filterBtn"
-        app:layout_constraintRight_toLeftOf="@+id/mainScreen_defaultAvatar"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_filter_colored"
-        app:tint="@color/white"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="10dp"
-        />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/mainScreen_searchBtn"
-        app:layout_constraintRight_toLeftOf="@+id/mainScreen_filterBtn"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_search"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="10dp"
-        />-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/mainScreen_blackbckg"-->
-
-    <include
-        android:id="@+id/mainScreen_topToolBar"
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/mainScreenFragmentContainerView"
-        layout="@layout/top_toolbar"
-        android:visibility="gone"/>
-
-    <!--<ViewStub
-        android:id="@+id/mainScreen_topToolBar"
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/mainScreenFragmentContainerView"
-        android:inflatedId="@layout/top_toolbar"
-        android:layout="@layout/top_toolbar"
-        />-->
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/mainScreenFragmentContainerView"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintTop_toBottomOf="@+id/mainScreen_topToolBar"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/mainscreen_nav"
-        tools:layout_editor_absoluteX="1dp" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -144,4 +16,15 @@
         app:itemTextColor="@color/c_white"
         app:itemIconTint="@color/c_white"
         app:itemRippleColor="@color/b_turquise"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mainScreenFragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintTop_toTopOf="parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/mainscreen_nav"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
