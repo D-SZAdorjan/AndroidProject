@@ -1,10 +1,10 @@
 package com.example.bazar.fragments
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.get
 import androidx.core.view.isVisible
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bazar.App
 import com.example.bazar.DataAdapter
 import com.example.bazar.R
+import com.example.bazar.databinding.ApplicationBarBinding
 import com.example.bazar.databinding.FragmentTimeLineBinding
 import com.example.bazar.model.Product
 import com.example.bazar.viewmodels.MainScreenViewModel
@@ -66,7 +67,6 @@ class TimeLineFragment : Fragment(), DataAdapter.OnItemClickListener, DataAdapte
 
         myToolBar.inflateMenu(R.menu.time_line_menu)
 
-        //myToolBar.findViewById<Toolbar>(R.id.toolBar_search).isVisible = false
         myToolBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.toolBar_search -> {
