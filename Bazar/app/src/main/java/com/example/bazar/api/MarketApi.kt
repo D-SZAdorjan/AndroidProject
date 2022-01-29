@@ -17,6 +17,9 @@ interface MarketApi {
     @GET(Constants.GET_PRODUCT_URL)
     suspend fun getProducts(@Header("token") token: String): ProductResponse
 
+    @GET(Constants.GET_PRODUCT_URL)
+    suspend fun getFilteredProducts(@Header("token") token: String,@Header("filter") filter: String): ProductResponse
+
     @GET(Constants.GET_USER_INFO)
     suspend fun getUserInfo(@Header("username") username: String): UserInfoResponse
 }

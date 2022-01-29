@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -60,13 +61,10 @@ class TimeLineFragment : Fragment(), DataAdapter.OnItemClickListener, DataAdapte
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolBar()
+        setupToolBar(view)
     }
 
-    private fun setupToolBar(){
-
-        myToolBar.inflateMenu(R.menu.time_line_menu)
-
+    private fun setupToolBar(view: View){
         myToolBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.toolBar_search -> {
@@ -76,11 +74,14 @@ class TimeLineFragment : Fragment(), DataAdapter.OnItemClickListener, DataAdapte
                     true
                 }
                 R.id.toolBar_avatar -> {
+                    Navigation.findNavController(view).navigate(R.id.navigateFromTimeLineFragmentToProfileFragment)
                     true
                 }
                 else -> false
             }
         }
+
+        myToolBar.inflateMenu(R.menu.time_line_menu)
     }
 
     private fun setupRecyclerView(){

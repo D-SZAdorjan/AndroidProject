@@ -21,6 +21,10 @@ class Repository {
         return RetrofitInstance.api.getProducts(token)
     }
 
+    suspend fun getFilteredProducts(token: String, filter: String): ProductResponse {
+        return RetrofitInstance.api.getFilteredProducts(token, filter)
+    }
+
     suspend fun getUserInfo(userName: String): UserInfoResponse {
         return RetrofitInstance.api.getUserInfo(userName)
     }

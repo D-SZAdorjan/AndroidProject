@@ -12,6 +12,8 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -19,24 +21,32 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bazar.App
 import com.example.bazar.DataAdapter
+import com.example.bazar.MyMarketDataAdapter
 import com.example.bazar.R
 import com.example.bazar.databinding.FragmentMyMarketBinding
 import com.example.bazar.databinding.FragmentTimeLineBinding
 import com.example.bazar.model.Product
-import com.example.bazar.viewmodels.MainScreenViewModel
+import com.example.bazar.repository.Repository
+import com.example.bazar.viewmodels.*
 import java.security.acl.Group
 
-class MyMarketFragment : Fragment(), DataAdapter.OnItemClickListener, DataAdapter.OnItemLongClickListener {
+class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, MyMarketDataAdapter.OnItemLongClickListener {
 
     private var _binding : FragmentMyMarketBinding? = null
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
-    private val mainScreenViewModel : MainScreenViewModel by activityViewModels()
+    private lateinit var myMarketViewModel : MyMarketViewModel
     private lateinit var recView: RecyclerView
-    private lateinit var adapter: DataAdapter
+    private lateinit var adapter: MyMarketDataAdapter
 
     private lateinit var myToolBar: Toolbar
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val factory = MyMarketViewModelFactory(this.requireContext(), Repository())
+        myMarketViewModel = ViewModelProvider(this, factory).get(MyMarketViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,22 +57,15 @@ class MyMarketFragment : Fragment(), DataAdapter.OnItemClickListener, DataAdapte
         val view = binding.root
 
         myToolBar = binding.fragMMTopToolbar.toolbar
-        myToolBar.setNavigationIcon(R.drawable.ic_arrow_next_pagination)
-        myToolBar.setNavigationOnClickListener {
-            // back button pressed
-            findNavController().navigateUp()
-        }
+
+        val factory = MyMarketViewModelFactory(requireContext(), Repository())
+        myMarketViewModel = ViewModelProvider(this, factory).get(myMarketViewModel::class.java)
 
         recView = binding.mymarketFragRecyclerView
         setupRecyclerView()
-        //mainScreenViewModel.getProducts()
-        //var list = mainScreenViewModel.products.value?.filter { it.username == "demen" }
-        //Log.d("mymarketlist", App.thisUser.username + ", " + list.toString())
-        mainScreenViewModel.products.value?.forEach{
-            Log.d("mymarketlist", App.thisUser.username + ", " + it.username)
-        }
-        mainScreenViewModel.products.observe(viewLifecycleOwner){
-            adapter.setData(mainScreenViewModel.products.value as ArrayList<Product>)
+        myMarketViewModel.getUserProducts()
+        myMarketViewModel.products.observe(viewLifecycleOwner){
+            adapter.setData(myMarketViewModel.products.value as ArrayList<Product>)
             adapter.notifyDataSetChanged()
         }
         return view;
@@ -70,30 +73,44 @@ class MyMarketFragment : Fragment(), DataAdapter.OnItemClickListener, DataAdapte
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolBar()
+        setupToolBar(view)
     }
 
-    private fun setupToolBar(){
+    private fun setupToolBar(view: View){
 
-        myToolBar.inflateMenu(R.menu.time_line_menu)
+        //beallítom a nem alapértelemezett visszafele gomb, hogy nézzen ki
+        myToolBar.setNavigationIcon(R.drawable.ic_arrow_next_pagination)
+        myToolBar.title = "My Market"
+        myToolBar.setTitleTextColor(resources.getColor(R.color.white))
 
-        myToolBar.findViewById<Toolbar>(R.id.toolBar_filter).isVisible = false
+        //beteszem a my_market_menu kinezetet a toolbaromba
+        myToolBar.inflateMenu(R.menu.my_market_menu)
+
+        //kereses és user icon menü itemek
         myToolBar.setOnMenuItemClickListener {
-            when (it.itemId) {
+            when(it.itemId){
                 R.id.toolBar_search -> {
                     true
                 }
                 R.id.toolBar_avatar -> {
+                    Navigation.findNavController(view).navigate(R.id.navigateFrommyMarketFragmentToProfileFragment)
                     true
                 }
-                else -> false
+                else -> {
+                    false
+                }
             }
+        }
+
+        //nem alapértelemezett vissza gomb
+        myToolBar.setNavigationOnClickListener{
+            findNavController().navigateUp()
         }
     }
 
     private fun setupRecyclerView(){
         Log.d("myMarketFragxxx", "idaig eljut5!")
-        adapter = DataAdapter(ArrayList<Product>(), this.requireContext(), App.thisUser, this, this)
+        adapter = MyMarketDataAdapter(ArrayList<Product>(), this.requireContext(), this, this)
         recView.adapter = adapter
         recView.layoutManager = LinearLayoutManager(this.context)
         recView.addItemDecoration(
@@ -105,21 +122,9 @@ class MyMarketFragment : Fragment(), DataAdapter.OnItemClickListener, DataAdapte
         recView.setHasFixedSize(true)
     }
 
-    /*private fun makeToolBarInvisible(){
-        toolBar.visibility = View.GONE
-        group.visibility = View.GONE
-        searchBtn.visibility = View.GONE
-        avatar.visibility = View.GONE
-    }*/
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        //makeToolBarInvisible()
     }
 
     override fun onItemClick(position: Int) {

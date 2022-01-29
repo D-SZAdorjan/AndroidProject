@@ -11,17 +11,18 @@
         android:label="fragment_time_line"
         tools:layout="@layout/fragment_time_line" >
         <action
-            android:id="@+id/action_timeLineFragment2_to_myMarketFragment2"
-            app:destination="@id/myMarketFragment" />
-        <action
-            android:id="@+id/action_timeLineFragment_to_profileFragment"
+            android:id="@+id/navigateFromTimeLineFragmentToProfileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/myMarketFragment"
         android:name="com.example.bazar.fragments.MyMarketFragment"
         android:label="fragment_my_market"
-        tools:layout="@layout/fragment_my_market" />
+        tools:layout="@layout/fragment_my_market" >
+        <action
+            android:id="@+id/navigateFrommyMarketFragmentToProfileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.bazar.fragments.ProfileFragment"
