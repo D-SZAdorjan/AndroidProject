@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/fragProdDetail_topToolbar"
+        layout="@layout/application_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/fragProdDetail_prodImages"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_topToolbar"
+        android:src="@drawable/placeholder_image"/>
+
+    <ImageView
+        android:id="@+id/fragProdDetail_UserImage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/avatar"
+        android:layout_marginTop="20dp"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_prodImages"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/fragProdDetail_ownerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Owner Name"
+        android:textColor="@color/black"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintTop_toTopOf="@id/fragProdDetail_UserImage"
+        app:layout_constraintBottom_toBottomOf="@id/fragProdDetail_UserImage"
+        app:layout_constraintLeft_toRightOf="@id/fragProdDetail_UserImage"
+        />
+
+    <View
+        android:id="@+id/fragProdDetail_clickableOwner"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_prodImages"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/fragProdDetail_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Today"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintTop_toTopOf="@id/fragProdDetail_UserImage"
+        app:layout_constraintBottom_toBottomOf="@id/fragProdDetail_UserImage"
+        app:layout_constraintLeft_toRightOf="@+id/fragProdDetail_ownerName"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/fragProdDetail_prodName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Name"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textSize="25dp"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_clickableOwner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/fragProdDetail_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:text="0"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/fragProdDetail_clickableOwner"
+        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_prodName"/>
+
+    <TextView
+        android:id="@+id/fragProdDetail_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Ron/piece"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintLeft_toRightOf="@id/fragProdDetail_price"
+        app:layout_constraintTop_toTopOf="@+id/fragProdDetail_price"
+        app:layout_constraintBottom_toBottomOf="@id/fragProdDetail_price"/>
+
+    <TextView
+        android:id="@+id/fragProdDetail_isActiveItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toRightOf="@id/fragProdDetail_currency"
+        app:layout_constraintTop_toTopOf="@+id/fragProdDetail_price"
+        app:layout_constraintBottom_toBottomOf="@id/fragProdDetail_price"
+        app:layout_constraintRight_toRightOf="@id/fragProdDetail_date"
+        />
+
+    <TextView
+        android:id="@+id/fragProdDetail_description"
+        android:layout_width="wrap_content"
+        android:maxWidth="375dp"
+        android:layout_height="wrap_content"
+        android:maxHeight="200dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id. "
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_currency"
+        app:layout_constraintLeft_toLeftOf="@id/fragProdDetail_price"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

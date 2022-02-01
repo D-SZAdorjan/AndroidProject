@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.widget.EditText
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -98,7 +99,8 @@ class TimeLineFragment : Fragment(), DataAdapter.OnItemClickListener, DataAdapte
     }
 
     override fun onItemClick(position: Int) {
-//        TODO("Not yet implemented")
+        val bundle = bundleOf("currItem" to mainScreenViewModel.products.value!![position])
+        Navigation.findNavController(this.requireView()).navigate(R.id.navigateFromTimeLineFragmentToProductDetailFragment, bundle)
     }
 
     override fun onItemLongClick(position: Int) {

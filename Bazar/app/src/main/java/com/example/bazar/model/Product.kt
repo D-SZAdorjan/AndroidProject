@@ -1,9 +1,12 @@
 package com.example.bazar.model
+import android.os.Parcelable
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
 data class Image(val _id: String, val image_id: String, val image_name: String, val image_path: String)
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class Product(val rating: Double,
                    val amount_type: String,
@@ -15,9 +18,9 @@ data class Product(val rating: Double,
                    val units: String,
                    val description: String,
                    val title: String,
-                   val images: List<Image>,
+                   val images: List<String>,
                    val creation_time: Long
-)
+) : Parcelable
 
 @JsonClass(generateAdapter = true)
 data class ProductResponse(val item_count: Int, val products: List<Product>, val timestamp: Long)

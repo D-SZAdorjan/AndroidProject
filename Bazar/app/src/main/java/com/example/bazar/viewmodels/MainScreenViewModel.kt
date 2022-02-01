@@ -43,7 +43,7 @@ class MainScreenViewModel(val context: Context, val repository: Repository) : Vi
             try{
                 val result =
                     repository.getUserInfo(userName)
-                user.value = result.userData
+                user.value = result.data
             }catch ( e: Exception){
                 Log.d("xxx", "MainScreenViewModel exception: ${e.toString()}")
             }

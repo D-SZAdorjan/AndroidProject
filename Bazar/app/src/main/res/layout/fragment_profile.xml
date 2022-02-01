@@ -86,15 +86,30 @@
         android:textColor="@color/white"
         android:text="Phone Number"/>
 
-    <Button
+    <!--<Button
+        android:id="@+id/fragProfile_editBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/fragProfile_phoneNumber"
-        app:layout_constraintLeft_toLeftOf="@id/fragProfile_phoneNumber"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0"
         android:layout_marginTop="30dp"
-        android:text="Send a chat message"
-        android:backgroundTint="@color/b_turquise"/>
+        android:backgroundTint="@color/b_turquise"
+        android:text="Edit Profile"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragProfile_phoneNumber" /> -->
 
+    <com.google.android.material.button.MaterialButton
+        style="?attr/materialButtonOutlinedStyle"
+        android:id="@+id/fragProfile_editBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragProfile_phoneNumber"
+        android:layout_marginTop="30dp"
+        android:text="Edit Profile"
+        android:textColor="@color/b_white"
+        app:cornerRadius="8dp"
+        app:strokeColor="@color/b_white"
+        app:strokeWidth="2dp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

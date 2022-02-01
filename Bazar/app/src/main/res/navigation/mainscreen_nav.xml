@@ -13,6 +13,9 @@
         <action
             android:id="@+id/navigateFromTimeLineFragmentToProfileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/navigateFromTimeLineFragmentToProductDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/myMarketFragment"
@@ -27,5 +30,20 @@
         android:id="@+id/profileFragment"
         android:name="com.example.bazar.fragments.ProfileFragment"
         android:label="profile_view_others"
-        tools:layout="@layout/profile_view_others" />
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="currUser"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.bazar.fragments.ProductDetailFragment"
+        android:label="ProductDetailFragment" >
+        <argument
+            android:name="currItem"
+            app:argType="com.example.bazar.model.Product" />
+        <action
+            android:id="@+id/navigateFromProductDetailFragmentToProfileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>

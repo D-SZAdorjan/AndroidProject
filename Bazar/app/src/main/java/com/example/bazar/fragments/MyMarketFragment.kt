@@ -42,12 +42,6 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, My
 
     private lateinit var myToolBar: Toolbar
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val factory = MyMarketViewModelFactory(this.requireContext(), Repository())
-        myMarketViewModel = ViewModelProvider(this, factory).get(MyMarketViewModel::class.java)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,7 +53,7 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, My
         myToolBar = binding.fragMMTopToolbar.toolbar
 
         val factory = MyMarketViewModelFactory(requireContext(), Repository())
-        myMarketViewModel = ViewModelProvider(this, factory).get(myMarketViewModel::class.java)
+        myMarketViewModel = ViewModelProvider(this, factory).get(MyMarketViewModel::class.java)
 
         recView = binding.mymarketFragRecyclerView
         setupRecyclerView()

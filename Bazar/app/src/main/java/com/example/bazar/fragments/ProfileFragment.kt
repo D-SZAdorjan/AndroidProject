@@ -5,21 +5,33 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import com.example.bazar.R
 import com.example.bazar.databinding.FragmentProfileBinding
-import com.example.bazar.databinding.ProfileViewOthersBinding
+import com.example.bazar.model.Product
+import com.example.bazar.model.User
+import com.example.bazar.model.UserInfo
+import com.example.bazar.repository.Repository
+import com.example.bazar.viewmodels.ProfileFragmentViewModel
+import com.example.bazar.viewmodels.ProfileFragmentViewModelFactory
 
 class ProfileFragment : Fragment() {
 
+    lateinit var userProfileImage : ImageView
+    lateinit var userName : TextView
+    lateinit var userEmail : TextView
+    lateinit var userPhoneNumber : TextView
+
     private var _binding : FragmentProfileBinding? = null
-    private var _binding2 : ProfileViewOthersBinding? = null
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
-    private val binding2 get() = _binding2!!
 
     private lateinit var myToolBar: Toolbar
+    private lateinit var profFragmentViewModel : ProfileFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +43,26 @@ class ProfileFragment : Fragment() {
         val view = binding.root
 
         myToolBar = binding.fragTLTopToolbar.toolbar
+        val factory = ProfileFragmentViewModelFactory(requireContext(), Repository())
+        profFragmentViewModel = ViewModelProvider(this, factory).get(ProfileFragmentViewModel::class.java)
+
+        val currUser : String = this.requireArguments().getString("currUser")!!
+        profFragmentViewModel.getUserInformation(currUser)
+
+        setupView(profFragmentViewModel.user.value)
 
         return view
+    }
+
+    fun setupView(currUser : UserInfo?){
+        userProfileImage = binding.fragProfileProfilePic
+        userName = binding.fragProfileUserName
+        userEmail = binding.fragProfileEmail
+        userPhoneNumber = binding.fragProfilePhoneNumber
+
+        userName.text = currUser!!.username
+        userEmail.text = currUser!!.email
+        userPhoneNumber.text = currUser!!.phone_number
     }
 
     private fun setupToolBar(){
@@ -60,7 +90,6 @@ class ProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        _binding2 = null
     }
 
 }
