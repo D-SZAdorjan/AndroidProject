@@ -42,6 +42,7 @@ class LoginViewModel(val context: Context, val repository: Repository) : ViewMod
             App.token = result.token
             App.thisUser.username = result.username
             App.thisUser.email = result.email
+            App.thisUser.phone_number = result.phone_number.toString()
             App.thisUser.creation_time = result.creation_time
             App.sharedPreferences.putStringValue(SharedPreferencesManager.KEY_TOKEN,result.token)
             isSuccessfull.value = true

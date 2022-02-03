@@ -1,5 +1,6 @@
 package com.example.bazar.model
 import android.os.Parcelable
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
@@ -28,7 +29,7 @@ data class ProductResponse(val item_count: Int, val products: List<Product>, val
 @JsonClass(generateAdapter = true)
 data class AddProductRequest(var title: String,
                              var description: String,
-                             var price_per_unit: String,
+                             var price_per_unit: Double,
                              var units: String,
                              var is_active: Boolean,
                              var amount_type: String,
@@ -47,3 +48,21 @@ data class AddProductResponse(var creation : String,
                               var images : List<Image>,
                               var creation_time : Long
 )
+
+@JsonClass(generateAdapter = true)
+data class RemoveProductResponse(val message: String, val product_id: String, val deletion_time: String)
+
+@JsonClass(generateAdapter = true)
+data class UpdateProductRequest(
+    var price_per_unit : String,
+    var is_active : Boolean,
+    var title : String,
+    var rating : String,
+    var amount_type : String,
+    var price_type : String
+)
+
+/*@JsonClass(generateAdapter = true)
+data class UpdateProductResponse(
+
+)*/

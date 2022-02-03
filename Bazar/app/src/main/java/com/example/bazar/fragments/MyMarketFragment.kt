@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -30,6 +31,7 @@ import com.example.bazar.model.Product
 import com.example.bazar.repository.Repository
 import com.example.bazar.viewmodels.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import java.security.acl.Group
 
 class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, MyMarketDataAdapter.OnItemLongClickListener {
@@ -138,6 +140,16 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, My
     }
 
     override fun onItemLongClick(position: Int) {
-        TODO("Not yet implemented")
+        myMarketViewModel.deleteUserProduct(myMarketViewModel.products.value!![position].product_id)
+        /*myMarketViewModel.successfulldelete.observe(viewLifecycleOwner){
+            if( myMarketViewModel.successfulldelete.value!! ){
+                Toast.makeText(requireContext(), "Product successfully deleted!\nPlease reload the page!", Toast.LENGTH_LONG)
+                Snackbar.make(requireView(),"Product successfully deleted!\nPlease reload the page!", Snackbar.LENGTH_LONG)
+            }else{
+                Toast.makeText(requireContext(), "Error: Product couldn't be deleted!\n", Toast.LENGTH_LONG)
+            }
+        }*/
+        Toast.makeText(requireContext(), "Product successfully deleted!\nPlease reload the page!", Toast.LENGTH_LONG)
+        Snackbar.make(requireView(),"Product successfully deleted!\nPlease reload the page!", Snackbar.LENGTH_LONG)
     }
 }

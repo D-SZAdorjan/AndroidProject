@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/login_black">
+
+    <include
+        android:id="@+id/fragEditProfile_topToolbar"
+        layout="@layout/application_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/fragEditProfile_profilePic"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        android:src="@drawable/ic_defaultavatar"/>
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragEditProfile_modifyEmail"
+        android:background="@drawable/backroundwithborder"
+        android:textSize="25dp"
+        android:hint="Email address"
+        android:gravity="center"
+        android:textColorHint="@color/nTB_grey_70percent"
+        android:textColor="@color/white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragEditProfile_profilePic"
+        app:layout_constraintBottom_toTopOf="@+id/fragEditProfile_modifyUserName"/>
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragEditProfile_modifyUserName"
+        android:background="@drawable/backroundwithborder"
+        android:textSize="25dp"
+        android:hint="User name"
+        android:gravity="center"
+        android:textColorHint="@color/nTB_grey_70percent"
+        android:textColor="@color/white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragEditProfile_modifyEmail"
+        app:layout_constraintBottom_toTopOf="@+id/fragEditProfile_modifyPhoneNumber"/>
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragEditProfile_modifyPhoneNumber"
+        android:background="@drawable/backroundwithborder"
+        android:textSize="25dp"
+        android:hint="Phone number"
+        android:gravity="center"
+        android:textColorHint="@color/nTB_grey_70percent"
+        android:textColor="@color/white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragEditProfile_modifyUserName"
+        app:layout_constraintBottom_toTopOf="@id/fragEditProfile_submitBtn"/>
+
+    <com.google.android.material.button.MaterialButton
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragEditProfile_submitBtn"
+        android:text="Submit"
+        android:textColor="@color/white"
+        app:cornerRadius="8dp"
+        app:strokeColor="@color/b_white"
+        app:strokeWidth="2dp"
+        app:layout_constraintTop_toBottomOf="@id/fragEditProfile_modifyPhoneNumber"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

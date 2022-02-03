@@ -75,7 +75,8 @@ class TimeLineFragment : Fragment(), DataAdapter.OnItemClickListener, DataAdapte
                     true
                 }
                 R.id.toolBar_avatar -> {
-                    Navigation.findNavController(view).navigate(R.id.navigateFromTimeLineFragmentToProfileFragment)
+                    val bundle = bundleOf("currUser" to App.thisUser.username)
+                    Navigation.findNavController(view).navigate(R.id.navigateFromTimeLineFragmentToProfileFragment, bundle)
                     true
                 }
                 else -> false

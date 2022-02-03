@@ -8,4 +8,7 @@ object Constants {
     const val REGISTER_URL = "user/register"
     const val FORGOTTENPASS_URL = "user/reset"
     const val ADD_PRODUCT = "products/add"
+    const val EDIT_PROFILE = "user/update"
+    const val REMOVE_PRODUCT = "products/remove"
+    const val UPDATE_PRODUCT = "products/update"
 }

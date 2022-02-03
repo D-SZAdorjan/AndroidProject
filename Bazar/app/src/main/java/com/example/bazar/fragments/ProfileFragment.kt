@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import com.example.bazar.App
 import com.example.bazar.R
 import com.example.bazar.databinding.FragmentProfileBinding
 import com.example.bazar.model.Product
@@ -18,6 +20,7 @@ import com.example.bazar.model.UserInfo
 import com.example.bazar.repository.Repository
 import com.example.bazar.viewmodels.ProfileFragmentViewModel
 import com.example.bazar.viewmodels.ProfileFragmentViewModelFactory
+import com.google.android.material.button.MaterialButton
 
 class ProfileFragment : Fragment() {
 
@@ -25,6 +28,7 @@ class ProfileFragment : Fragment() {
     lateinit var userName : TextView
     lateinit var userEmail : TextView
     lateinit var userPhoneNumber : TextView
+    lateinit var editProfileBtn : MaterialButton
 
     private var _binding : FragmentProfileBinding? = null
     // This property is only valid between onCreateView and onDestroyView.
@@ -47,22 +51,38 @@ class ProfileFragment : Fragment() {
         profFragmentViewModel = ViewModelProvider(this, factory).get(ProfileFragmentViewModel::class.java)
 
         val currUser : String = this.requireArguments().getString("currUser")!!
-        profFragmentViewModel.getUserInformation(currUser)
 
-        setupView(profFragmentViewModel.user.value)
+        bindViews()
+
+        if( App.thisUser.username.compareTo( currUser ) == 0 ) {
+            setupView(App.thisUser)
+            editProfileBtn.setOnClickListener {
+                onEditProfileBtnClick()
+            }
+        }else{
+            profFragmentViewModel.getUserInformation(currUser)
+            setupView(profFragmentViewModel.user.value)
+        }
 
         return view
     }
 
-    fun setupView(currUser : UserInfo?){
+    fun bindViews(){
         userProfileImage = binding.fragProfileProfilePic
         userName = binding.fragProfileUserName
         userEmail = binding.fragProfileEmail
         userPhoneNumber = binding.fragProfilePhoneNumber
+        editProfileBtn = binding.fragProfileEditBtn
+    }
 
+    fun setupView(currUser : UserInfo?){
         userName.text = currUser!!.username
         userEmail.text = currUser!!.email
         userPhoneNumber.text = currUser!!.phone_number
+    }
+
+    fun onEditProfileBtnClick(){
+        Navigation.findNavController(requireView()).navigate(R.id.navigateFromProfileFragmentToEditProfileFragment)
     }
 
     private fun setupToolBar(){

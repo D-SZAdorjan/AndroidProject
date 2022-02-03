@@ -46,6 +46,12 @@ data class ForgotPasswordRequest(val username: String, val email: String)
 @JsonClass(generateAdapter = true)
 data class ForgotPasswordResponse(val code: Int, val message : String, val timestamp: Long )
 
+@JsonClass(generateAdapter = true)
+data class EditProfileRequest(var email: String, var username: String, var phone_number: Int)
+
+@JsonClass(generateAdapter = true)
+data class EditProfileResponse(val code: Int, val updatedData: UserInfo, val timestamp: Long)
+
 // GSon converter
 //data class LoginRequest (
 //    @SerializedName("username")

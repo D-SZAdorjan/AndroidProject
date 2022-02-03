@@ -40,6 +40,9 @@
         <argument
             android:name="currUser"
             app:argType="string" />
+        <action
+            android:id="@+id/navigateFromProfileFragmentToEditProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -60,5 +63,13 @@
         <action
             android:id="@+id/navigateFromAddProductFragmentToMyMarketFragment"
             app:destination="@id/myMarketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.bazar.fragments.EditProfileFragment"
+        android:label="EditProfileFragment" >
+        <action
+            android:id="@+id/navigateFromEditProfileFragmentToProfileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>

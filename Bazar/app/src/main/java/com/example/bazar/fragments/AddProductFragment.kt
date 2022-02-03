@@ -109,7 +109,7 @@ class AddProductFragment : Fragment() {
                 it.title = prodTitle.text.toString()
             }
             if (it != null) {
-                it.price_per_unit = prodPrice.text.toString()
+                it.price_per_unit = prodPrice.text.toString().toDouble()
             }
             if (it != null) {
                 it.price_type = currencyType.selectedItem.toString()

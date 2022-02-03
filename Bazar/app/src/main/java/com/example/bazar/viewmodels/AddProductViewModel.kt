@@ -16,14 +16,14 @@ class AddProductViewModel(val context: Context, val repository: Repository) : Vi
     var creationMessage : String = ""
 
     init{
-        product.value = AddProductRequest("","","","",false,"", "")
+        product.value = AddProductRequest("","",0.0,"",false,"", "")
         successfullUpload.value = false
     }
 
     suspend fun uploadProductToDatabase() {
         val request =
             AddProductRequest(title = product.value!!.title, description = product.value!!.description,
-                price_per_unit = product.value!!.price_per_unit, units = product.value!!.units,
+                price_per_unit = product.value!!.price_per_unit.toDouble(), units = product.value!!.units,
                 is_active = product.value!!.is_active, amount_type = product.value!!.amount_type,
                 price_type = product.value!!.price_type)
         viewModelScope.launch {
