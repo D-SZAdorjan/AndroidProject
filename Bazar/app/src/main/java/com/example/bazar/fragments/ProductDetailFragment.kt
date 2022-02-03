@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.bazar.App
 import com.example.bazar.R
 import com.example.bazar.databinding.FragmentProductDetailBinding
@@ -52,6 +54,8 @@ class ProductDetailFragment : Fragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var myToolBar: Toolbar
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,6 +63,9 @@ class ProductDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        myToolBar = binding.fragProdDetailTopToolbar.toolbar
+        setupToolBar(view)
 
         currItem = this.requireArguments().getParcelable<Product>("currItem")!!
         if( App.thisUser.username.compareTo( currItem.username ) == 0 ){
@@ -129,6 +136,36 @@ class ProductDetailFragment : Fragment() {
         pricePerUnit.text = currItem.price_per_unit
         rating.text = currItem.rating.toString()
         permission.visibility = View.VISIBLE
+    }
+
+    private fun setupToolBar(view: View){
+
+        //beallítom a nem alapértelemezett visszafele gomb, hogy nézzen ki
+        myToolBar.setNavigationIcon(R.drawable.ic_arrow_next_pagination)
+        myToolBar.title = "Product Detail"
+        myToolBar.setTitleTextColor(resources.getColor(R.color.white))
+
+        //beteszem a my_market_menu kinezetet a toolbaromba
+        myToolBar.inflateMenu(R.menu.profile_menu)
+
+        //kereses és user icon menü itemek
+        myToolBar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.toolBar_avatar -> {
+                    val bundle = bundleOf("currUser" to App.thisUser.username)
+                    Navigation.findNavController(view).navigate(R.id.navigateFrommyMarketFragmentToProfileFragment, bundle)
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+
+        //nem alapértelemezett vissza gomb
+        myToolBar.setNavigationOnClickListener{
+            findNavController().navigateUp()
+        }
     }
 
     fun onUserBtnClick(view: View){

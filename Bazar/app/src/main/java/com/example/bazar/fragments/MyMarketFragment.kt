@@ -97,10 +97,12 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, My
         myToolBar.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.toolBar_search -> {
+
                     true
                 }
                 R.id.toolBar_avatar -> {
-                    Navigation.findNavController(view).navigate(R.id.navigateFrommyMarketFragmentToProfileFragment)
+                    val bundle = bundleOf("currUser" to App.thisUser.username)
+                    Navigation.findNavController(view).navigate(R.id.navigateFrommyMarketFragmentToProfileFragment, bundle)
                     true
                 }
                 else -> {

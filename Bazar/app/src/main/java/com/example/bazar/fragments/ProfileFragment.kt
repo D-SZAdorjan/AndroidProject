@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.bazar.App
 import com.example.bazar.R
 import com.example.bazar.databinding.FragmentProfileBinding
@@ -54,6 +56,8 @@ class ProfileFragment : Fragment() {
 
         bindViews()
 
+        setupToolBar(view)
+
         if( App.thisUser.username.compareTo( currUser ) == 0 ) {
             setupView(App.thisUser)
             editProfileBtn.setOnClickListener {
@@ -85,25 +89,33 @@ class ProfileFragment : Fragment() {
         Navigation.findNavController(requireView()).navigate(R.id.navigateFromProfileFragmentToEditProfileFragment)
     }
 
-    private fun setupToolBar(){
+    private fun setupToolBar(view: View){
 
-        myToolBar.inflateMenu(R.menu.time_line_menu)
+        //beallítom a nem alapértelemezett visszafele gomb, hogy nézzen ki
+        myToolBar.setNavigationIcon(R.drawable.ic_arrow_next_pagination)
+        myToolBar.title = "Profile"
+        myToolBar.setTitleTextColor(resources.getColor(R.color.white))
 
-        myToolBar.findViewById<Toolbar>(R.id.toolBar_search).isVisible=false
-        myToolBar.findViewById<Toolbar>(R.id.toolBar_filter).isVisible=false
+        //beteszem a my_market_menu kinezetet a toolbaromba
+        myToolBar.inflateMenu(R.menu.profile_menu)
+
+        //kereses és user icon menü itemek
         myToolBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.toolBar_search -> {
-                    true
-                }
-                R.id.toolBar_filter -> {
-                    true
-                }
+            when(it.itemId){
                 R.id.toolBar_avatar -> {
+                    val bundle = bundleOf("currUser" to App.thisUser.username)
+                    Navigation.findNavController(view).navigate(R.id.navigateFrommyMarketFragmentToProfileFragment, bundle)
                     true
                 }
-                else -> false
+                else -> {
+                    false
+                }
             }
+        }
+
+        //nem alapértelemezett vissza gomb
+        myToolBar.setNavigationOnClickListener{
+            findNavController().navigateUp()
         }
     }
 
