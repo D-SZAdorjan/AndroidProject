@@ -82,6 +82,17 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_availableAmount"
+        android:text="Available amount: "
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/fragProdDetail_clickableOwner"
+        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_prodName"/>
+
+    <TextView
         android:id="@+id/fragProdDetail_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,9 +100,9 @@
         android:textStyle="bold"
         android:textSize="40dp"
         android:text="0"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintLeft_toLeftOf="@id/fragProdDetail_clickableOwner"
-        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_prodName"/>
+        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_availableAmount"/>
 
     <TextView
         android:id="@+id/fragProdDetail_currency"
@@ -129,4 +140,134 @@
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_currency"
         app:layout_constraintLeft_toLeftOf="@id/fragProdDetail_price"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_ownerView"
+        android:visibility="gone"
+        app:constraint_referenced_ids="fragProdDetail_rating,
+        fragProdDetail_ratingText, fragProdDetail_units,
+        fragProdDetail_unitText, fragProdDetail_pricePerItem,
+        fragProdDetail_pricePerItemText"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_rating"
+        android:text="10 stars"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/b_turquise"
+        android:background="@drawable/ic_ellipse_10"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_description"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/fragProdDetail_units"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_ratingText"
+        android:text="Rating"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/fragProdDetail_rating"
+        app:layout_constraintLeft_toLeftOf="@id/fragProdDetail_rating"
+        app:layout_constraintRight_toRightOf="@id/fragProdDetail_rating"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_units"
+        android:text="1 pcs"
+        android:textColor="@color/b_turquise"
+        android:background="@drawable/ic_ellipse_10"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/fragProdDetail_rating"
+        app:layout_constraintBottom_toBottomOf="@+id/fragProdDetail_rating"
+        app:layout_constraintLeft_toRightOf="@id/fragProdDetail_rating"
+        app:layout_constraintRight_toLeftOf="@id/fragProdDetail_pricePerItem"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_unitText"
+        android:text="Total items"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/fragProdDetail_units"
+        app:layout_constraintLeft_toLeftOf="@id/fragProdDetail_units"
+        app:layout_constraintRight_toRightOf="@id/fragProdDetail_units"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_pricePerItem"
+        android:text="1"
+        android:textColor="@color/b_turquise"
+        android:background="@drawable/ic_ellipse_10"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/fragProdDetail_rating"
+        app:layout_constraintBottom_toBottomOf="@+id/fragProdDetail_rating"
+        app:layout_constraintLeft_toRightOf="@id/fragProdDetail_units"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_pricePerItemText"
+        android:text="Price/item"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/fragProdDetail_pricePerItem"
+        app:layout_constraintLeft_toLeftOf="@id/fragProdDetail_pricePerItem"
+        app:layout_constraintRight_toRightOf="@id/fragProdDetail_pricePerItem"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_customerView"
+        android:visibility="gone"
+        app:constraint_referenced_ids="fragProdDetail_emailBtn,
+        fragProdDetail_shopBtn, fragProdDetail_callBtn, fragProdDetail_availableAmount"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_emailBtn"
+        android:src="@drawable/ic_email_btn"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/fragProdDetail_description"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/fragProdDetail_shopBtn"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_shopBtn"
+        android:src="@drawable/ic_shop_btn"
+        app:layout_constraintTop_toTopOf="@+id/fragProdDetail_emailBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/fragProdDetail_emailBtn"
+        app:layout_constraintLeft_toRightOf="@+id/fragProdDetail_emailBtn"
+        app:layout_constraintRight_toLeftOf="@+id/fragProdDetail_callBtn"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragProdDetail_callBtn"
+        android:src="@drawable/ic_call_btn"
+        app:layout_constraintTop_toTopOf="@+id/fragProdDetail_emailBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/fragProdDetail_emailBtn"
+        app:layout_constraintLeft_toRightOf="@id/fragProdDetail_shopBtn"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

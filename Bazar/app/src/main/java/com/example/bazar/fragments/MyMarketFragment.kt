@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +29,7 @@ import com.example.bazar.databinding.FragmentTimeLineBinding
 import com.example.bazar.model.Product
 import com.example.bazar.repository.Repository
 import com.example.bazar.viewmodels.*
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.security.acl.Group
 
 class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, MyMarketDataAdapter.OnItemLongClickListener {
@@ -39,6 +41,7 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, My
     private lateinit var myMarketViewModel : MyMarketViewModel
     private lateinit var recView: RecyclerView
     private lateinit var adapter: MyMarketDataAdapter
+    private lateinit var addBtn : FloatingActionButton
 
     private lateinit var myToolBar: Toolbar
 
@@ -62,7 +65,15 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, My
             adapter.setData(myMarketViewModel.products.value as ArrayList<Product>)
             adapter.notifyDataSetChanged()
         }
+        addBtn = binding.mymarketFragAddProductBtn
+        addBtn.setOnClickListener {
+            onAddBtnClick(view)
+        }
         return view;
+    }
+
+    fun onAddBtnClick(view: View){
+        Navigation.findNavController(view).navigate(R.id.navigateFromMyMarketFragmentToAddProductFragment)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -122,7 +133,8 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, My
     }
 
     override fun onItemClick(position: Int) {
-        TODO("Not yet implemented")
+        val bundle = bundleOf("currItem" to myMarketViewModel.products.value!![position])
+        Navigation.findNavController(requireView()).navigate(R.id.navigateFromMyMarketFragmentToProductDetailFragment, bundle)
     }
 
     override fun onItemLongClick(position: Int) {

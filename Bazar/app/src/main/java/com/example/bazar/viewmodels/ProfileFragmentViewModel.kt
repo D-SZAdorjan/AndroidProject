@@ -24,7 +24,8 @@ class ProfileFragmentViewModel(val context: Context, val repository: Repository)
                 Log.d("xxx", "ProfileFragmentViewModel - User: ${App.thisUser.username}")
                 val result =
                     repository.getUserInfo(wantedUser)
-                user.value = result.data
+                Log.d("xxx", "ProfileFragmentViewModel - #result:  ${result.data}")
+                user.value = result.data[0]
                 Log.d("xxx", "ProfileFragmentViewModel - #errorCode:  ${result.code}")
             }catch(e: Exception){
                 Log.d("xxx", "ProfileFragmentViewModel exception: ${e.toString()}")

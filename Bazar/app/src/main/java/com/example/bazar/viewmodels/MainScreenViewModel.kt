@@ -41,9 +41,11 @@ class MainScreenViewModel(val context: Context, val repository: Repository) : Vi
     fun getThisUser(userName : String) {
         viewModelScope.launch {
             try{
+                /*val result =
+                    repository.getUserInfo(userName)*/
                 val result =
-                    repository.getUserInfo(userName)
-                user.value = result.data
+                    repository.getUserInfo("demen")
+                user.value = result.data[0]
             }catch ( e: Exception){
                 Log.d("xxx", "MainScreenViewModel exception: ${e.toString()}")
             }

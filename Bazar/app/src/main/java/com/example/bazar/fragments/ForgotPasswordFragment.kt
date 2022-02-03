@@ -36,6 +36,7 @@ class ForgotPasswordFragment : Fragment() {
         val factory = ForgotPasswordViewModelFactory(this.requireContext(), Repository())
         fpViewModel = ViewModelProvider(this, factory).get(ForgotPasswordViewModel::class.java)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

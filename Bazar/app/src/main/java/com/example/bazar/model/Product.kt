@@ -24,3 +24,26 @@ data class Product(val rating: Double,
 
 @JsonClass(generateAdapter = true)
 data class ProductResponse(val item_count: Int, val products: List<Product>, val timestamp: Long)
+
+@JsonClass(generateAdapter = true)
+data class AddProductRequest(var title: String,
+                             var description: String,
+                             var price_per_unit: String,
+                             var units: String,
+                             var is_active: Boolean,
+                             var amount_type: String,
+                             var price_type: String
+)
+
+@JsonClass(generateAdapter = true)
+data class AddProductResponse(var creation : String,
+                              var product_id : String,
+                              var username : String,
+                              var is_active : Boolean,
+                              var price_per_unit: Double,
+                              var units : Int,
+                              var description : String,
+                              var title : String,
+                              var images : List<Image>,
+                              var creation_time : Long
+)

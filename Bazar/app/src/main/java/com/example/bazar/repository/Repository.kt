@@ -28,4 +28,8 @@ class Repository {
     suspend fun getUserInfo(userName: String): UserInfoResponse {
         return RetrofitInstance.api.getUserInfo(userName)
     }
+
+    suspend fun addProductToDatabase(token: String, product: AddProductRequest): AddProductResponse {
+        return RetrofitInstance.api.addProduct(token, product.title, product.description, product.price_per_unit, product.units, product.is_active, product.amount_type,product.price_type)
+    }
 }

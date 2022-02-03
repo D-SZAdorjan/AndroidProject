@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="amountType_arr">
+        <item>Kg</item>
+        <item>L</item>
+        <item>Pcs</item>
+    </string-array>
+</resources>

@@ -32,7 +32,7 @@ data class UserInfo(
     )
 
 @JsonClass(generateAdapter = true)
-data class UserInfoResponse(val code: Int, val data : UserInfo, val time_stamp: Long)
+data class UserInfoResponse(val code: Int, val data : List<UserInfo>, val time_stamp: Long)
 
 @JsonClass(generateAdapter = true)
 data class RegisterRequest(val username: String, val password: String, val email: String)
